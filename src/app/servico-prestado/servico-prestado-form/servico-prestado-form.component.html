@@ -1,0 +1,50 @@
+<h1 class="mt-4">Serviços Prestados</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">
+        Novo
+    </li>
+</ol>
+
+<div class="container">
+    <form #form="ngForm" (submit)="onSubmit()">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="alert alert-success" role="alert" *ngIf="success == true">
+                    Serviço salvo com sucesso!
+                  </div>
+                  <div class="alert alert-danger" role="alert" *ngIf="errors != null">
+                    Impossivel fazer o cadastro no sistema!
+                  </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlSelect1">Cliente</label>
+            <select class="form-control" [ngModelOptions]="{standalone: true}" [(ngModel)]="servico.cliente" required>
+                <option value="">Selecione ...</option>
+                <option *ngFor="let cliente of clientes" [ngValue]="cliente.id">
+                    {{ cliente.nome }}
+                </option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Descrição do Serviço</label>
+            <input type="email" class="form-control" id="exampleFormControlInput1" name="descricao"
+                [(ngModel)]="servico.descricao" required>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <label for="exampleFormControlSelect1">Valor do Serviço</label>
+                <input type="text" class="form-control" name="valor" [(ngModel)]="servico.valor" required>
+            </div>
+            <div class="col">
+                <label for="exampleFormControlSelect1">Data do Serviço</label>
+                <input type="text" class="form-control" name="data" [(ngModel)]="servico.data" required>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-success">Salvar</button>
+        <button class="btn btn-danger ml-2" type="button" routerLink="/servicos-prestado-lista">
+            <i class="fas fa-arrow-circle-left"></i>
+            Voltar
+        </button>
+    </form>
+</div>

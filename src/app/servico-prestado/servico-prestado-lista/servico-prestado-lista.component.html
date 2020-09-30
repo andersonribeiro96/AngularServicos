@@ -1,0 +1,64 @@
+<h1 class="mt-4">Serviços Prestados</h1>
+<ol class="breadcrumb mb-4">
+    <li class="breadcrumb-item active">
+        Consulta
+    </li>
+</ol>
+
+<div class="container mb-3">
+    <form #consultaForm="ngForm" (submit)="consultar()">
+        <div class="row">
+            <div class="col-md-6">
+                <label for="inputNome">Nome do Cliente:</label>
+                <input type="text" [(ngModel)]="nome" name="nome" id="inputNome" class="form-control">
+            </div>
+            <div class="col-md-6">
+                <label for="inputmes">Mês:</label>
+                <select [(ngModel)]="mes" class="form-control" name="mes">
+                    <option value="">Selecione</option>
+                    <option *ngFor="let mes of meses" [value]="mes">
+                        {{ mes }}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="mt-3">
+            <button type="submit" class="btn btn-primary">
+                <i class="fa fa-search"></i>
+                Consultar
+            </button>
+            <button type="button" class="btn btn-warning ml-2" routerLink="/servicos-prestado-form">
+                <i class="fa fa-plus"></i>
+                Novo
+            </button>
+        </div>
+    </form>
+
+    <div class="row mt-5 mb-4">
+        
+        <div class="col-md-12">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Cliente</th>
+                        <th>Descrição</th>
+                        <th>Valor</th>
+                        <th>Data</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let servico of lista">
+                        <td>{{ servico.cliente.nome }}</td>
+                        <td>{{servico.descricao}}</td>
+                        <td>{{servico.valor}}</td>
+                        <td>{{servico.data}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="alert alert-warning mt-3" role="alert" *ngIf="message">
+                {{ message }}
+              </div>
+        </div>
+    </div>
+
+</div>
